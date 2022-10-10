@@ -13,6 +13,6 @@ services:
     volumes:
       - type: bind
         source: .
-        target: /sample-react-graphql-relay
+        target: /sample-react-graphql
     tty: true
     stdin_open: true

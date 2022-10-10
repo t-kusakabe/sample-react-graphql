@@ -1,1 +1,1 @@
-# sample-react-graphql-relay
+# sample-react-graphql

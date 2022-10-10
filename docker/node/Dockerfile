@@ -3,7 +3,7 @@
 ##########################
 FROM node:18.10.0-alpine3.15 as builder
 
-WORKDIR /sample-react-graphql-relay
+WORKDIR /sample-react-graphql
 
 COPY package.json package-lock.json ./
 
@@ -18,8 +18,8 @@ RUN npm run build
 ##########################
 FROM node:18.10.0-alpine3.15
 
-WORKDIR /sample-react-graphql-relay
+WORKDIR /sample-react-graphql
 
-COPY --from=builder /sample-react-graphql-relay ./
+COPY --from=builder /sample-react-graphql ./
 
 CMD ["npm", "run", "start"]
