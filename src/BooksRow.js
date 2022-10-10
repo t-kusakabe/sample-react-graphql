@@ -1,8 +1,8 @@
-const BooksRow = () => {
+const BooksRow = (props) => {
   return (
     <tr>
-      <td>01</td>
-      <td>Sample</td>
+      <td>{props.isbn}</td>
+      <td>{props.title}</td>
     </tr>
   );
 };
