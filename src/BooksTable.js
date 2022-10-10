@@ -1,11 +1,37 @@
+import { useState, useEffect } from 'react';
+import fetchGraphQL from './fetchGraphQL';
 import BooksRow from './BooksRow';
 
 const BooksTable = () => {
-  const rows = [
-    <BooksRow isbn="001" title="SampleA" />,
-    <BooksRow isbn="002" title="SampleB" />,
-    <BooksRow isbn="003" title="SampleC" />
-  ];
+  const [books, setBooks] = useState([]);
+
+  const query = `query getBooks($title: String!) {
+    Books(title: $title) {
+      isbn
+      title
+    }
+  }`;
+
+  useEffect(() => {
+    fetchGraphQL(query, { title: 'a' })
+      .then(response => {
+        setBooks(response.data.Books);
+      }).catch((error) => {
+        console.log(error);
+      });
+  });
+
+
+  const rows = [];
+  books.forEach((book) => {
+    rows.push(
+      <BooksRow
+        isbn={book.isbn}
+        title={book.title}
+        key={book.isbn}
+      />
+    );
+  });
 
   return (
     <table>
